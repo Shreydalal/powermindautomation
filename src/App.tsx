@@ -6,7 +6,7 @@ import FeaturesPage from './pages/FeaturesPage';
 import PricingPage from './pages/PricingPage';
 import WhyChooseUsPage from './pages/WhyChooseUsPage';
 import ContactPage from './pages/ContactPage';
-import Chatbot from "./components/ChatBot";
+import Chatbot from "./components/Chatbot";
 
 function App() {
   return (
