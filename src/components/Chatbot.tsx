@@ -1,80 +1,97 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-const Chatbot = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{ text: string; isUser: boolean }[]>([]);
-  const [input, setInput] = useState("");
+const Chatbot: React.FC = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [messages, setMessages] = useState<{ text: string; sender: "user" | "bot" }[]>([]);
+    const [userInput, setUserInput] = useState("");
 
-  const toggleChat = () => setIsOpen(!isOpen);
+    const toggleChatbot = () => setIsOpen(!isOpen);
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
-    const newMessages = [...messages, { text: input, isUser: true }];
-    setMessages(newMessages);
-    setInput("");
+    const sendMessage = async () => {
+        if (userInput.trim() === "") return;
 
-    // Show typing indicator
-    setMessages((prev) => [...prev, { text: "Typing...", isUser: false }]);
+        // Append user message
+        setMessages([...messages, { text: userInput, sender: "user" }]);
 
-    try {
-      const response = await fetch("https://chatbot-4vx7.onrender.com//chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input }),
-      });
+        // Show bot typing indicator
+        setMessages(prev => [...prev, { text: "Typing...", sender: "bot" }]);
 
-      const data = await response.json();
-      setMessages([...newMessages, { text: data.response, isUser: false }]);
-    } catch (error) {
-      setMessages([...newMessages, { text: "Server error. Try again later.", isUser: false }]);
-    }
-  };
+        try {
+            const response = await fetch("http://127.0.0.1:5000/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userInput }),
+            });
 
-  return (
-    <div>
-      {/* Chatbot Button */}
-      <button
-        onClick={toggleChat}
-        className="fixed bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-full"
-      >
-        Chat
-      </button>
+            const data = await response.json();
 
-      {/* Chatbot Window */}
-      {isOpen && (
-        <div className="fixed bottom-16 right-4 bg-white shadow-lg rounded-lg w-80 p-4 border">
-          <div className="flex justify-between items-center mb-2">
-            <strong>Chatbot</strong>
-            <button onClick={toggleChat} className="text-red-500">X</button>
-          </div>
-          <div className="h-60 overflow-y-auto border p-2">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`p-2 rounded-lg max-w-xs ${
-                  msg.isUser ? "bg-gray-200 text-gray-800 self-end" : "bg-gray-100 text-gray-500 self-start"
-                }`}
-              >
-                {msg.text}
-              </div>
-            ))}
-          </div>
-          <div className="flex mt-2">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="border flex-1 p-2"
-              placeholder="Type a message..."
-            />
-            <button onClick={sendMessage} className="bg-blue-500 text-white px-3 ml-2">
-              Send
+            // Remove typing indicator and add bot response
+            setMessages(prev => [...prev.slice(0, -1), { text: data.response, sender: "bot" }]);
+        } catch (error) {
+            setMessages(prev => [...prev.slice(0, -1), { text: "Error connecting to server", sender: "bot" }]);
+        }
+
+        setUserInput("");
+    };
+
+    return (
+        <>
+            {/* Floating Chat Button */}
+            <button
+                onClick={toggleChatbot}
+                className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition"
+            >
+                💬
             </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+
+            {/* Chatbot Window */}
+            {isOpen && (
+                <div className="fixed bottom-16 right-6 bg-white w-80 h-96 shadow-xl rounded-lg flex flex-col">
+                    {/* Header */}
+                    <div className="bg-blue-600 text-white p-3 flex justify-between items-center rounded-t-lg">
+                        <span>Chatbot</span>
+                        <button onClick={toggleChatbot} className="text-white text-lg">
+                            &times;
+                        </button>
+                    </div>
+
+                    {/* Chat Messages */}
+                    <div className="flex-1 p-3 overflow-y-auto space-y-2">
+                        {messages.map((msg, index) => (
+                            <div
+                                key={index}
+                                className={`p-2 rounded-lg max-w-xs ${
+                                    msg.sender === "user"
+                                        ? "bg-gray-200 text-gray-800 self-end"
+                                        : "bg-white-100 text-black-800"
+                                }`}
+                            >
+                                {msg.text}
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Input Field */}
+                    <div className="p-3 border-t flex items-center">
+                        <input
+                            type="text"
+                            value={userInput}
+                            onChange={(e) => setUserInput(e.target.value)}
+                            onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+                            placeholder="Type a message..."
+                            className="flex-1 p-2 border rounded-lg"
+                        />
+                        <button
+                            onClick={sendMessage}
+                            className="bg-blue-600 text-white p-2 ml-2 rounded-lg hover:bg-blue-700 transition"
+                        >
+                            Send
+                        </button>
+                    </div>
+                </div>
+            )}
+        </>
+    );
 };
 
 export default Chatbot;
