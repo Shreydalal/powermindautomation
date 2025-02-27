@@ -80,8 +80,8 @@ const ContactPage = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Call Us</h3>
               <p className="text-gray-600 mb-2">Mon-Fri, 9am-6pm EST</p>
-              <a href="tel:+14155550123" className="text-blue-600 font-medium hover:underline">
-                (415) 555-0123
+              <a href="tel:+919099544377" className="text-blue-600 font-medium hover:underline">
+                +91 9099544377
               </a>
             </motion.div>
 
@@ -97,8 +97,8 @@ const ContactPage = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Email Us</h3>
               <p className="text-gray-600 mb-2">We'll respond within 24 hours</p>
-              <a href="mailto:info@powermind.ai" className="text-blue-600 font-medium hover:underline">
-                info@powermind.ai
+              <a href="mailto:powermindautomation@gmail.com" className="text-blue-600 font-medium hover:underline">
+                powermindautomation@gmail.com
               </a>
             </motion.div>
 
@@ -255,27 +255,7 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8 text-center">Find Us</h2>
-            <div className="rounded-lg overflow-hidden shadow-lg h-96 bg-gray-200">
-              {/* In a real application, you would embed a Google Map or similar here */}
-              <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                <div className="text-center">
-                  <MapPin className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                  <p className="text-gray-600">
-                    Interactive map would be displayed here.
-                    <br />
-                    123 Innovation Drive, San Francisco, CA 94103
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* CTA Section */}
       <section className="py-16 bg-blue-600 text-white">
