@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Bot, Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 
@@ -23,7 +22,7 @@ const Footer = () => {
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+              <a href="https://www.instagram.com/powermindautomation/" className="text-gray-400 hover:text-blue-400 transition-colors">
                 <Instagram size={20} />
               </a>
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
