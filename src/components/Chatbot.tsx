@@ -6,15 +6,17 @@ const Chatbot: React.FC = () => {
     const [userInput, setUserInput] = useState("");
 
     const toggleChatbot = () => setIsOpen(!isOpen);
+    const closeChatbot = () => setIsOpen(false); // Close when clicking "X"
 
     const sendMessage = async () => {
         if (userInput.trim() === "") return;
 
         // Append user message
-        setMessages([...messages, { text: userInput, sender: "user" }]);
+        setMessages((prev) => [...prev, { text: userInput, sender: "user" }]);
+        setUserInput(""); // Clear input field after sending
 
         // Show bot typing indicator
-        setMessages(prev => [...prev, { text: "Typing...", sender: "bot" }]);
+        setMessages((prev) => [...prev, { text: "Typing...", sender: "bot" }]);
 
         try {
             const response = await fetch("https://chatbot-4vx7.onrender.com/chat", {
@@ -26,12 +28,10 @@ const Chatbot: React.FC = () => {
             const data = await response.json();
 
             // Remove typing indicator and add bot response
-            setMessages(prev => [...prev.slice(0, -1), { text: data.response, sender: "bot" }]);
+            setMessages((prev) => [...prev.slice(0, -1), { text: data.response, sender: "bot" }]);
         } catch (error) {
-            setMessages(prev => [...prev.slice(0, -1), { text: "Error connecting to server", sender: "bot" }]);
+            setMessages((prev) => [...prev.slice(0, -1), { text: "Error connecting to server", sender: "bot" }]);
         }
-
-        setUserInput("");
     };
 
     return (
@@ -50,7 +50,7 @@ const Chatbot: React.FC = () => {
                     {/* Header */}
                     <div className="bg-blue-600 text-white p-3 flex justify-between items-center rounded-t-lg">
                         <span>Chatbot</span>
-                        <button onClick={toggleChatbot} className="text-white text-lg">
+                        <button onClick={closeChatbot} className="text-white text-lg">
                             &times;
                         </button>
                     </div>
@@ -58,15 +58,16 @@ const Chatbot: React.FC = () => {
                     {/* Chat Messages */}
                     <div className="flex-1 p-3 overflow-y-auto space-y-2">
                         {messages.map((msg, index) => (
-                            <div
-                                key={index}
-                                className={`p-2 rounded-lg max-w-xs ${
-                                    msg.sender === "user"
-                                        ? "bg-gray-200 text-gray-800 self-end"
-                                        : "bg-white-100 text-black-800"
-                                }`}
-                            >
-                                {msg.text}
+                            <div key={index} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
+                                <div
+                                    className={`p-2 rounded-lg max-w-xs ${
+                                        msg.sender === "user"
+                                            ? "bg-gray-200 text-gray-800"
+                                            : "bg-blue-100 text-black"
+                                    }`}
+                                >
+                                    {msg.text}
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -77,7 +78,9 @@ const Chatbot: React.FC = () => {
                             type="text"
                             value={userInput}
                             onChange={(e) => setUserInput(e.target.value)}
-                            onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") sendMessage();
+                            }}
                             placeholder="Type a message..."
                             className="flex-1 p-2 border rounded-lg"
                         />
