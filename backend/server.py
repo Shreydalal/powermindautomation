@@ -10,6 +10,8 @@ from typing import List, Optional
 import uuid
 from datetime import datetime
 import re
+import certifi
+
 
 
 ROOT_DIR = Path(__file__).parent
