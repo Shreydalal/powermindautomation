@@ -17,10 +17,13 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'Case Studies', href: '#case-studies' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Services', href: '#services', type: 'anchor' },
+    { name: 'Case Studies', href: '#case-studies', type: 'anchor' },
+    { name: 'Testimonials', href: '#testimonials', type: 'anchor' },
+    { name: 'Contact', href: '#contact', type: 'anchor' },
+    { name: 'Terms of Service', href: '/terms', type: 'route' },
+    { name: 'Privacy Policy', href: '/privacy', type: 'route' },
+    { name: 'Cookie Policy', href: '/cookies', type: 'route' }
   ];
 
   const services = [
@@ -48,7 +51,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-6">
               <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-                <Zap className="h-6 w-6 text-white" />
+                <img src="/POWERMIND.png" alt="Powermind Logo" className="w-10 h-10 rounded-lg" />
               </div>
               <span className="text-xl font-bold">Powermind Automation</span>
             </div>
@@ -96,24 +99,23 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={() => handleLinkClick(link.href)}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-left"
-                  >
-                    {link.name}
-                  </button>
+                  {link.type === 'anchor' ? (
+                    <button
+                      onClick={() => handleLinkClick(link.href)}
+                      className="text-gray-400 hover:text-white transition-colors duration-200 text-left"
+                    >
+                      {link.name}
+                    </button>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  Privacy Policy
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -212,13 +214,13 @@ const Footer = () => {
               © {currentYear} Powermind Automation. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <a href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <a href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <a href="/cookies" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Cookie Policy
               </a>
             </div>

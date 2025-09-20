@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,9 +15,7 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-              <Zap className="h-6 w-6 text-white" />
-            </div>
+            <img src="/POWERMIND.png" alt="Powermind Logo" className="w-10 h-10 rounded-lg" />
             <span className="text-xl font-bold text-gray-900">Powermind Automation</span>
           </div>
 
