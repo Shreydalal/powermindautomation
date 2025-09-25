@@ -212,7 +212,7 @@ const Contact = () => {
                 {/* Message */}
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-sm font-semibold text-gray-700">
-                    Project Details *
+                    Current Challenges / Needs *
                   </Label>
                   <Textarea
                     id="message"
