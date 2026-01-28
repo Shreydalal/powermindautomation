@@ -4,19 +4,17 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  CheckCircle, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  CheckCircle,
   ArrowRight,
   Zap,
   Shield,
   Target
 } from 'lucide-react';
-import { mockContactForm } from '../mock';
 import { toast } from 'sonner';
 import axios from 'axios';
 
@@ -30,7 +28,6 @@ const Contact = () => {
     email: '',
     company: '',
     phone: '',
-    service: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,16 +44,23 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post(`${API}/contact`, formData);
-      
-      if (response.data.success) {
-        toast.success(response.data.message);
+      // Send data to n8n webhook
+      // Assuming backend accepts these fields. If strict validation on 'service', I might need to add it back hidden.
+      const payload = { ...formData, service: 'AI Front Desk Demo', source: 'Website Contact Form' };
+
+      // Update this URL to your n8n webhook
+      const WEBHOOK_URL = "https://n8n-latest-w318.onrender.com/webhook/new-lead";
+
+      const response = await axios.post(WEBHOOK_URL, payload);
+
+      // n8n usually returns 200 OK for successful receipt
+      if (response.status === 200) {
+        toast.success("Request received! We'll call you shortly.");
         setFormData({
           fullName: '',
           email: '',
           company: '',
           phone: '',
-          service: '',
           message: ''
         });
       } else {
@@ -64,33 +68,7 @@ const Contact = () => {
       }
     } catch (error) {
       console.error('Contact form submission error:', error);
-      // FastAPI validation errors shape: { detail: [ { loc, msg, type, ... } ] }
-      const detail = error.response?.data?.detail;
-      if (detail) {
-        let message = 'Validation error';
-        if (typeof detail === 'string') {
-          message = detail;
-        } else if (Array.isArray(detail)) {
-          // Collect messages from validation errors
-            const msgs = detail
-              .map(item => {
-                if (item?.msg && item?.loc) {
-                  // loc example: ['body','fullName'] -> pick last segment
-                  const field = Array.isArray(item.loc) ? item.loc[item.loc.length - 1] : item.loc;
-                  return `${field}: ${item.msg}`;
-                }
-                return item?.msg || null;
-              })
-              .filter(Boolean);
-            if (msgs.length) message = msgs.join('\n');
-        } else if (typeof detail === 'object') {
-          // Possibly a single validation error object
-          if (detail.msg) message = detail.msg;
-        }
-        toast.error(message);
-      } else {
-        toast.error('Something went wrong. Please try again.');
-      }
+      toast.error('Could not send message. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
@@ -103,14 +81,13 @@ const Contact = () => {
         <div className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Mail className="h-4 w-4" />
-            <span>Get Started Today</span>
+            <span>See It In Action</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-            Ready to Transform Your Business?
+            Get Your Free AI Front Desk Demo
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
-            Get your free strategy session and discover how AI automation can boost your productivity by 300%. 
-            No commitments, just actionable insights.
+            Stop losing leads to voicemail. Fill out the form below to see how our system can book appointments for you 24/7.
           </p>
         </div>
 
@@ -119,10 +96,10 @@ const Contact = () => {
           <Card className="border-2 border-gray-200 shadow-2xl order-2 lg:order-1">
             <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50 border-b">
               <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900 text-center">
-                Get Your Free Strategy Session
+                Book Your Demo
               </CardTitle>
               <p className="text-center text-gray-600 mt-2 text-sm sm:text-base">
-                Fill out the form below and we'll contact you within 24 hours
+                We'll show you exactly how it works for your industry.
               </p>
             </CardHeader>
             <CardContent className="p-6 sm:p-8">
@@ -161,81 +138,62 @@ const Contact = () => {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="company" className="text-sm font-semibold text-gray-700">
-                      Company Name *
+                      Company / Clinic Name *
                     </Label>
                     <Input
                       id="company"
                       type="text"
                       value={formData.company}
                       onChange={(e) => handleInputChange('company', e.target.value)}
-                      placeholder="Enter company name"
+                      placeholder="Enter business name"
                       required
                       className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 transition-colors"
                     />
                   </div>
                 </div>
 
-                {/* Phone and Service */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-sm font-semibold text-gray-700">
-                      Phone Number
-                    </Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      placeholder="Enter phone number"
-                      className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 transition-colors"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="service" className="text-sm font-semibold text-gray-700">
-                      Service Interest *
-                    </Label>
-                    <Select value={formData.service} onValueChange={(value) => handleInputChange('service', value)} required>
-                      <SelectTrigger className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500">
-                        <SelectValue placeholder="Select a service" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {mockContactForm.fields.find(f => f.name === 'service').options.map((option) => (
-                          <SelectItem key={option} value={option}>
-                            {option}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                {/* Phone */}
+                <div className="space-y-2">
+                  <Label htmlFor="phone" className="text-sm font-semibold text-gray-700">
+                    Phone Number (for call back) *
+                  </Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    placeholder="Enter phone number"
+                    required
+                    className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 transition-colors"
+                  />
                 </div>
 
                 {/* Message */}
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-sm font-semibold text-gray-700">
-                    Current Challenges / Needs *
+                    How many calls do you miss per day? (Optional)
                   </Label>
                   <Textarea
                     id="message"
                     value={formData.message}
                     onChange={(e) => handleInputChange('message', e.target.value)}
-                    placeholder="Tell us about your automation needs and current challenges..."
-                    required
-                    rows={4}
+                    placeholder="e.g. 5-10 calls, mostly on weekends..."
+                    rows={3}
                     className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
 
                 {/* Submit Button */}
-                <Button 
+                <Button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-200 hover:shadow-lg hover:scale-105 group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
-                    'Sending...'
+                    'Sending Request...'
                   ) : (
                     <>
-                      Book Free Strategy Session
+                      Book Free Demo
                       <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
                     </>
                   )}
@@ -246,76 +204,35 @@ const Contact = () => {
 
           {/* Right Column - Contact Info & Benefits */}
           <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
-            {/* Contact Information */}
-            <Card className="border-2 border-gray-200">
-              <CardHeader>
-                <CardTitle className="text-lg sm:text-xl font-bold text-gray-900">
-                  Get in Touch
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-sm sm:text-base">Email Us</h4>
-                    <p className="text-gray-600 text-sm sm:text-base">hello@powermindautomation.tech</p>
-                    <p className="text-xs sm:text-sm text-gray-500">We respond within 2 hours</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-sm sm:text-base">Call Us</h4>
-                    <p className="text-gray-600 text-sm sm:text-base">+91 9099549953</p>
-                    <p className="text-xs sm:text-sm text-gray-500">Mon - Fri, 9AM - 6PM IST</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-sm sm:text-base">Visit Us</h4>
-                    <p className="text-gray-600 text-sm sm:text-base">Vadodara, Gujarat<br />India</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
 
             {/* What to Expect */}
             <Card className="border-2 border-gray-200 bg-gradient-to-br from-blue-50 to-purple-50">
               <CardHeader>
                 <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 flex items-center">
                   <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 mr-2" />
-                  What to Expect
+                  What Happens Next?
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-gray-900 text-sm sm:text-base">Free 45-minute strategy session</p>
-                    <p className="text-xs sm:text-sm text-gray-600">Deep dive into your current processes</p>
+                    <p className="font-medium text-gray-900 text-sm sm:text-base">We analyze your business</p>
+                    <p className="text-xs sm:text-sm text-gray-600">We look at your website and common FAQs</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-gray-900 text-sm sm:text-base">Custom automation roadmap</p>
-                    <p className="text-xs sm:text-sm text-gray-600">Tailored specifically to your business</p>
+                    <p className="font-medium text-gray-900 text-sm sm:text-base">Live Demo Call</p>
+                    <p className="text-xs sm:text-sm text-gray-600">We'll let you talk to a demo AI agent live</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-gray-900 text-sm sm:text-base">ROI projections & timeline</p>
-                    <p className="text-xs sm:text-sm text-gray-600">Clear expectations and deliverables</p>
+                    <p className="font-medium text-gray-900 text-sm sm:text-base">Custom Proposal</p>
+                    <p className="text-xs sm:text-sm text-gray-600">Tailored pricing based on your call volume</p>
                   </div>
                 </div>
               </CardContent>
@@ -328,21 +245,35 @@ const Contact = () => {
                   <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
                 </div>
                 <p className="text-sm font-semibold text-gray-900">Fast Setup</p>
-                <p className="text-xs text-gray-600">7-day implementation</p>
+                <p className="text-xs text-gray-600">Live in 3-5 days</p>
               </div>
               <div className="text-center p-4 bg-white rounded-lg shadow-md">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg mx-auto mb-3 flex items-center justify-center">
                   <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
                 </div>
-                <p className="text-sm font-semibold text-gray-900">Guaranteed ROI</p>
-                <p className="text-xs text-gray-600">300% productivity boost</p>
+                <p className="text-sm font-semibold text-gray-900">No Risk</p>
+                <p className="text-xs text-gray-600">Cancel anytime</p>
               </div>
               <div className="text-center p-4 bg-white rounded-lg shadow-md">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg mx-auto mb-3 flex items-center justify-center">
                   <Target className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
                 </div>
-                <p className="text-sm font-semibold text-gray-900">Proven Results</p>
-                <p className="text-xs text-gray-600">500+ success stories</p>
+                <p className="text-sm font-semibold text-gray-900">More Sales</p>
+                <p className="text-xs text-gray-600">Catch every lead</p>
+              </div>
+            </div>
+
+            {/* Contact Information */}
+            <div className="bg-white p-6 rounded-2xl border border-gray-200">
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Phone className="h-5 w-5 text-gray-400" />
+                  <span className="text-gray-600">+91 9099549953</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Mail className="h-5 w-5 text-gray-400" />
+                  <span className="text-gray-600">hello@powermindautomation.tech</span>
+                </div>
               </div>
             </div>
           </div>
