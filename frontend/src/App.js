@@ -13,9 +13,11 @@ import HowItWorks from "./components/HowItWorks";
 import TargetAudience from "./components/TargetAudience";
 import CaseStudies from "./components/CaseStudies";
 import Pricing from "./components/Pricing";
-import Testimonials from "./components/Testimonials"; // Keeping original if still relevant, or remove if not needed
+import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ChatWidget from "./components/ChatWidget";
+
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookiePolicy from "./pages/CookiePolicy";
@@ -45,6 +47,7 @@ const Home = () => {
         <Contact />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 };
@@ -60,7 +63,7 @@ function App() {
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/cookies" element={<CookiePolicy />} />
 
-          {/* Existing Admin/Dashboard Routes - Preserving these from previous structure */}
+          {/* Existing Admin/Dashboard Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
