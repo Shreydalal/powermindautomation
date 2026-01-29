@@ -37,7 +37,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex">
-            <Button 
+            <Button
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg hover:scale-105"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
@@ -58,35 +58,35 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200 bg-white/95 backdrop-blur-sm">
             <nav className="flex flex-col space-y-4">
-              <a 
-                href="#services" 
+              <a
+                href="#services"
                 className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-2 py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
               </a>
-              <a 
-                href="#case-studies" 
+              <a
+                href="#case-studies"
                 className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-2 py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Case Studies
               </a>
-              <a 
-                href="#testimonials" 
+              <a
+                href="#testimonials"
                 className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-2 py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Testimonials
               </a>
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-2 py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </a>
-              <Button 
+              <Button
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 mx-2 mt-2"
                 onClick={() => {
                   setIsMenuOpen(false);
