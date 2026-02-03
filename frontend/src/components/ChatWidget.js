@@ -58,7 +58,7 @@ const ChatWidget = () => {
 
                 // Submit to n8n
                 try {
-                    await axios.post("https://n8n-latest-w318.onrender.com/webhook/new-lead", {
+                    await axios.post("https://n8n-1-jr1m.onrender.com/webhook/new-lead", {
                         fullName: formData.name,
                         email: email,
                         company: "Chat Widget Lead",
@@ -142,8 +142,8 @@ const ChatWidget = () => {
                                     >
                                         <div
                                             className={`max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed shadow-sm ${msg.sender === 'user'
-                                                    ? 'bg-blue-600 text-white rounded-tr-sm'
-                                                    : 'bg-white text-slate-800 border border-slate-100 rounded-tl-sm'
+                                                ? 'bg-blue-600 text-white rounded-tr-sm'
+                                                : 'bg-white text-slate-800 border border-slate-100 rounded-tl-sm'
                                                 }`}
                                         >
                                             {msg.text}

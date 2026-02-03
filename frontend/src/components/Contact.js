@@ -49,7 +49,7 @@ const Contact = () => {
       const payload = { ...formData, service: 'AI Front Desk Demo', source: 'Website Contact Form' };
 
       // Update this URL to your n8n webhook
-      const WEBHOOK_URL = "https://n8n-latest-w318.onrender.com/webhook/new-lead";
+      const WEBHOOK_URL = "https://n8n-1-jr1m.onrender.com/webhook/new-lead";
 
       const response = await axios.post(WEBHOOK_URL, payload);
 
