@@ -13,7 +13,7 @@ const PrivacyPolicy = () => {
 
       <section className="mb-8" id="use">
         <h2 className="text-xl font-semibold mb-2">2. How We Use Information</h2>
-        <p>We use your data to: respond to inquiries, schedule calls, deliver proposals, improve our services, personalize communication, and maintain internal records. We may send service or update emails—you can opt out of non-essential messages.</p>
+        <p>We use your data to: respond to inquiries, schedule calls, deliver proposals, improve our services, personalize communication, and maintain internal records. We may send service or update emails you can opt out of non-essential messages.</p>
       </section>
 
       <section className="mb-8" id="cookies">

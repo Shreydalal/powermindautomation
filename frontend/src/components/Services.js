@@ -9,23 +9,23 @@ const Services = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "AI Call Handler",
-      description: "Answers every missed call instantly with a human-like voice.",
+      description: "Instant Missed-Call Text-Back on WhatsApp.",
       details: [
         "Handles multiple calls simultaneously at any time of day",
+        "Instantly sends a WhatsApp booking/inquiry link on missed calls",
         "Qualifies leads & answers common questions naturally",
-        "Filters out spam and connects urgent calls to staff",
-        "Books appointments directly into your calendar"
+        "Filters out spam and connects urgent calls to staff"
       ]
     },
     {
       icon: <MessageSquare className="w-6 h-6" />,
       title: "AI Message Handler",
-      description: "Responds to WhatsApp, Instagram & Webchat 24/7.",
+      description: "Official WhatsApp Business & Instagram Automation.",
       details: [
-        "Instantly replies to messages on all your social channels",
-        "Nurtures leads who ask about pricing and availability",
-        "Follows up with old leads to reactivate them",
-        "Collects necessary details before human handover"
+        "Official WhatsApp Business API Integration to respond in seconds",
+        "Instagram DM automation to capture and warm up hot leads",
+        "Instantly replies to pricing, catalog, and availability inquiries",
+        "Collects contact details and buyer preferences before handoff"
       ]
     },
     {
@@ -33,10 +33,10 @@ const Services = () => {
       title: "Smart Booking & Notifications",
       description: "Automates your entire scheduling workflow.",
       details: [
-        "Syncs with Google Calendar, Calendly, and other tools",
-        "Sends SMS & WhatsApp reminders to reduce no-shows",
-        "Reschedules cancelled appointments automatically",
-        "Notifies you instantly when a new booking is made"
+        "Syncs with Google Calendar, Practo, and CRM booking links",
+        "Sends automatic reminders on WhatsApp to reduce no-shows",
+        "Allows customers to book site-visits, trials, or consultations instantly",
+        "Notifies your team on WhatsApp when a booking is confirmed"
       ]
     }
   ];

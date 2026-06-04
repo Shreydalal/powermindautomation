@@ -4,7 +4,18 @@ import { useLocation } from 'react-router-dom';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    const sectionPaths = [
+      "/services",
+      "/how-it-works",
+      "/case-studies",
+      "/pricing",
+      "/testimonials",
+      "/contact"
+    ];
+
+    if (!sectionPaths.includes(pathname)) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }, [pathname]);
   return null;
 };

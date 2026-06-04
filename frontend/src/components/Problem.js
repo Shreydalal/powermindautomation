@@ -17,11 +17,10 @@ const Problem = () => {
             The Hidden Cost of "Being Busy"
           </h2>
           <p className="text-lg text-slate-600">
-            For service businesses, every unanswered call or message is money walking out the door.
-            If you're relying on manual replies or a receptionist, you're leaking revenue.
+            Your front desk can only handle one thing at a time. While your receptionist is busy attending to a walk-in client or patient, your phone is ringing off the hook and your WhatsApp inbox is piling up. In India, if you don't answer instantly, leads simply call the next competitor.
           </p>
         </motion.div>
-
+ 
         <div className="grid md:grid-cols-3 gap-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -33,12 +32,12 @@ const Problem = () => {
             <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-6">
               <PhoneMissed className="w-6 h-6 text-red-600" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Calls Go Unanswered</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-3">The "Busy Line" Leak</h3>
             <p className="text-slate-600 leading-relaxed">
-              60% of customers won't leave a voicemail. If you don't pick up, they call your competitor immediately.
+              When your receptionist is checking in a patient or showing a catalog, incoming calls go unanswered. Over 65% of Indian customers won't call back they dial a competitor instead.
             </p>
           </motion.div>
-
+ 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -49,12 +48,12 @@ const Problem = () => {
             <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
               <Clock className="w-6 h-6 text-orange-600" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Slow Response Times</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-3">The "After-Hours" Drop-off</h3>
             <p className="text-slate-600 leading-relaxed">
-              Leads that aren't contacted within 5 minutes are 9x less likely to convert. Speed is everything.
+              Indian consumers browse listings, gyms, and clinic info at night. If a WhatsApp query at 9:30 PM is left unanswered until 10:00 AM, that hot lead has already booked elsewhere.
             </p>
           </motion.div>
-
+ 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -65,12 +64,30 @@ const Problem = () => {
             <div className="w-12 h-12 bg-slate-200 rounded-xl flex items-center justify-center mb-6">
               <UserX className="w-6 h-6 text-slate-600" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Inconsistent Staff</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-3">Staff Attrition & Leaves</h3>
             <p className="text-slate-600 leading-relaxed">
-              Sick days, holidays, and after-hours mean your front desk is offline 70% of the week.
+              Receptionists quit suddenly, take unannounced leaves during festival seasons, or arrive late. You spend valuable hours recruiting and retraining instead of growing your business.
             </p>
           </motion.div>
         </div>
+ 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-16 bg-blue-50 border border-blue-100 rounded-3xl p-8 max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div className="flex-1">
+            <h4 className="text-lg font-bold text-blue-950 mb-2">The AI Difference</h4>
+            <p className="text-blue-900 text-sm leading-relaxed">
+              The AI Front Desk works 24/7/365, never takes unannounced holidays, never demands festival bonuses, and handles 100+ concurrent calls and chats simultaneously with zero lag.
+            </p>
+          </div>
+          <div className="flex-shrink-0 bg-blue-600 text-white font-semibold text-xs tracking-wider uppercase px-4 py-2 rounded-full">
+            Zero Attrition. Zero Leaves.
+          </div>
+        </motion.div>
       </div>
     </section>
   );

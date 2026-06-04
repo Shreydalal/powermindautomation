@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
 import {
   Mail,
   Phone,
   MapPin,
   Linkedin,
   Twitter,
-  Facebook,
   Instagram,
   ArrowRight,
   Bot
@@ -16,19 +16,12 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: 'How It Works', href: '#how-it-works', type: 'anchor' },
-    { name: 'Features', href: '#services', type: 'anchor' },
-    { name: 'Case Studies', href: '#case-studies', type: 'anchor' },
-    { name: 'Pricing', href: '#pricing', type: 'anchor' },
-    { name: 'Book Demo', href: '#contact', type: 'anchor' },
+    { name: 'How It Works', to: '/how-it-works' },
+    { name: 'Features', to: '/services' },
+    { name: 'Case Studies', to: '/case-studies' },
+    { name: 'Pricing', to: '/pricing' },
+    { name: 'Book Demo', to: '/contact' },
   ];
-
-  const handleLinkClick = (href) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -79,12 +72,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={() => handleLinkClick(link.href)}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-left"
+                  <Link
+                    to={link.to}
+                    className="text-gray-400 hover:text-white transition-colors duration-200 text-left block text-sm"
                   >
                     {link.name}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -158,14 +151,15 @@ const Footer = () => {
             <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
               Get an AI receptionist that works 24/7.
             </p>
-            <Button
-              size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg hover:scale-105 group"
-              onClick={() => handleLinkClick('#contact')}
-            >
-              Book Free Demo
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <Link to="/contact">
+              <Button
+                size="lg"
+                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg hover:scale-105 group"
+              >
+                Book Free Demo
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

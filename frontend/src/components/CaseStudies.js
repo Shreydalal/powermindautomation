@@ -4,33 +4,33 @@ import { ArrowUpRight } from "lucide-react";
 const CaseStudies = () => {
   const cases = [
     {
-      category: "Dental Clinic",
-      title: "Recovered $12,000/mo in Missed Appointments",
-      description: "A busy dental practice was missing 25% of weekend calls. Our AI Agent now handles all after-hours inquiries and books appointments directly.",
+      category: "Multi-Specialty Clinic",
+      title: "Recovered ₹1,85,000/mo in Missed Consultations",
+      description: "Apex Dental in Delhi was missing 25% of weekend & late-night patient calls. Our AI Front Desk now handles missed calls with instant WhatsApp booking.",
       stats: [
         { label: "Missed Calls Caught", value: "100%" },
-        { label: "New Bookings/Mo", value: "+34" },
-        { label: "Est. Revenue", value: "+$12k" }
+        { label: "New OPD Bookings/Mo", value: "+42" },
+        { label: "Est. Revenue", value: "+₹1.85L" }
       ]
     },
     {
-      category: "Real Estate Agency",
-      title: "Instant Qualification of Property Leads",
-      description: "Agents were wasting hours on unqualified leads. The AI now qualifies buyers via WhatsApp before scheduling viewings for the agents.",
+      category: "Real Estate Brokerage",
+      title: "Qualifying Property Buyers on WhatsApp",
+      description: "Landmark Realty in Pune was getting hundreds of raw inquiries. The AI now qualifies buyers by budget and configuration (2BHK/3BHK) on WhatsApp before booking site-visits.",
       stats: [
-        { label: "Response Time", value: "< 10s" },
-        { label: "Agent Hours Saved", value: "15/wk" },
-        { label: "Show-up Rate", value: "92%" }
+        { label: "Response Time", value: "< 15s" },
+        { label: "Sales Time Saved", value: "15 hrs/wk" },
+        { label: "Site-Visit Booking", value: "+3x" }
       ]
     },
     {
-      category: "CrossFit Gym",
-      title: "Doubled Trial Class Bookings",
-      description: "Potential members were dropping off outside gym hours. The AI Front Desk now answers questions and books trials 24/7.",
+      category: "Premium Gym & Spa",
+      title: "Converting Late-Night Instagram Inquiries",
+      description: "Pulse Fitness in Bengaluru was ignoring late-night trial-pass and pricing inquiries. Our AI system responds instantly on Instagram DM and schedules tours on autopilot.",
       stats: [
         { label: "Admin Workload", value: "-80%" },
-        { label: "Trial Bookings", value: "2.1x" },
-        { label: "Member Signups", value: "+18%" }
+        { label: "Tours Scheduled", value: "85+/mo" },
+        { label: "New Members", value: "+22%" }
       ]
     }
   ];

@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { Star, Quote, ArrowRight, Users } from 'lucide-react';
 import { mockTestimonials } from '../mock';
 import axios from 'axios';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -133,10 +133,7 @@ const Testimonials = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
             <Link
-              to="contact"
-              smooth={true}
-              offset={-100}
-              duration={800}
+              to="/contact"
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-200 hover:shadow-lg hover:scale-105 group flex items-center justify-center cursor-pointer"
             >
               Book Free Demo

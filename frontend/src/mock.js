@@ -57,48 +57,48 @@ export const mockServices = [
 export const mockTestimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    role: "VP of Sales",
-    company: "TechStartup Inc.",
-    content: "Powermind transformed our entire sales process. We went from drowning in unqualified leads to having a steady stream of high-quality prospects. Our conversion rate increased by 180% in just 3 months.",
+    name: "Dr. Aditya Shah",
+    role: "Founder & Chief Surgeon",
+    company: "Shah Dental & Implant Clinic",
+    content: "Managing a multi-specialty clinic means our reception desk is always chaotic. Half the incoming patient calls were going unanswered. Since setting up Powermind AI, every missed call is instantly greeted with a WhatsApp message and a booking link. We recovered ₹1.5 Lakhs in patient consultations in the first 30 days alone!",
     rating: 5,
-    results: "180% increase in conversion rate"
+    results: "₹1.5 Lakhs recovered in 30 days"
   },
   {
     id: 2,
-    name: "Michael Chen", 
-    role: "Operations Director",
-    company: "E-commerce Giant",
-    content: "The automation systems handle 80% of our customer inquiries automatically while maintaining exceptional service quality. Our response time went from 20 minutes to 2 minutes.",
+    name: "Rohan Mehta",
+    role: "Managing Director",
+    company: "Landmark Realty Group",
+    content: "Our digital ads run 24/7, and prospects usually message us late at night. Our property consultants couldn't reply until the next morning. Powermind's AI now qualifies buyers on WhatsApp filtering them by budget and BHK preference and books them directly for site visits. It's like having a highly efficient, 24/7 sales coordinator.",
     rating: 5,
-    results: "90% reduction in response time"
+    results: "3.5x increase in site-visits"
   },
   {
     id: 3,
-    name: "Amanda Rodriguez",
-    role: "Managing Partner", 
-    company: "Professional Services Firm",
-    content: "Our team now focuses on high-value strategic work instead of administrative tasks. Client satisfaction has never been higher, and our profit margins improved by 28%.",
+    name: "Meera Nair",
+    role: "Operations Head",
+    company: "Pulse Gym & Wellness Centers",
+    content: "Staff unpunctuality and sudden attrition were my biggest bottlenecks. With Powermind AI, our Instagram and WhatsApp inquiries are answered within 5 seconds. We no longer lose gym trial signups because our staff was late or on leave.",
     rating: 5,
-    results: "28% increase in profit margin"
+    results: "85+ tours booked monthly"
   },
   {
     id: 4,
-    name: "David Thompson",
-    role: "CEO",
-    company: "GrowthCo Solutions",
-    content: "The ROI was immediate. Within 60 days, we saw a 250% increase in qualified leads and our sales team became 3x more productive. Best investment we've made.",
+    name: "Dr. Ananya Rao",
+    role: "Clinical Operations Head",
+    company: "CareFirst Multi-Specialty Clinic",
+    content: "Our staff used to spend hours answering FAQs and repeat questions on WhatsApp. The AI now automates 90% of repeat queries and schedules OPD slots instantly, letting our team focus on in-patient care.",
     rating: 5,
-    results: "250% increase in qualified leads"
+    results: "90% of FAQ queries automated"
   },
   {
     id: 5,
-    name: "Lisa Park",
-    role: "Marketing Director",
-    company: "InnovateLLC",
-    content: "Their email automation sequences are incredible. We're now nurturing 10x more prospects while maintaining personal touch. Our email ROI increased by 400%.",
+    name: "Vikram Malhotra",
+    role: "Founder & CEO",
+    company: "Malhotra Luxury Retail",
+    content: "High-end showrooms need instant responses to maintain a premium feel. The AI handles late-night catalogs and inquiries on Instagram DMs instantly, resulting in double the walk-ins over weekends.",
     rating: 5,
-    results: "400% increase in email ROI"
+    results: "2x weekend showroom walk-ins"
   }
 ];
 
