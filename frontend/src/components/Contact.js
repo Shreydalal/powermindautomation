@@ -21,7 +21,7 @@ import axios from 'axios';
 // Prefer explicit env var but fallback to localhost dev default
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
-const N8N_URL = process.env.REACT_APP_N8N_URL || 'https://n8n-1-jr1m.onrender.com';
+const N8N_URL = process.env.REACT_APP_N8N_URL || 'https://n8n.powermindai.tech';
 
 const Contact = () => {
   const [formData, setFormData] = useState({

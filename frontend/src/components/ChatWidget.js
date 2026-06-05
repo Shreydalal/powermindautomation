@@ -7,7 +7,7 @@ import { Card } from './ui/card';
 import axios from 'axios';
 import { toast } from 'sonner';
 
-const N8N_URL = process.env.REACT_APP_N8N_URL || 'https://n8n-1-jr1m.onrender.com';
+const N8N_URL = process.env.REACT_APP_N8N_URL || 'https://n8n.powermindai.tech';
 
 const ChatWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
