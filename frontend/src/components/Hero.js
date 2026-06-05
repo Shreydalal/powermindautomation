@@ -121,16 +121,21 @@ const Hero = () => {
               <div className="relative rounded-2xl bg-slate-800/50 border border-slate-700/50 backdrop-blur-xl p-4 sm:p-6 lg:p-8 shadow-2xl">
                 {/* Mock Chat UI */}
                 <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-start gap-2.5 sm:gap-3">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="flex items-start gap-2.5 sm:gap-3"
+                  >
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-600 flex items-center justify-center text-[10px] sm:text-xs text-white flex-shrink-0">Usr</div>
                     <div className="bg-slate-700/50 rounded-2xl rounded-tl-none p-2.5 sm:p-3 text-slate-200 text-xs sm:text-sm max-w-[85%] sm:max-w-[80%]">
                       Hi, do you have any appointments available tomorrow at Shah Clinic?
                     </div>
-                  </div>
+                  </motion.div>
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.5 }}
+                    transition={{ delay: 2.0 }}
                     className="flex items-start gap-2.5 sm:gap-3 flex-row-reverse"
                   >
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 flex items-center justify-center text-[10px] sm:text-xs text-white flex-shrink-0">AI</div>
@@ -138,16 +143,21 @@ const Hero = () => {
                       Yes! Dr. Aditya Shah has openings tomorrow at 11:00 AM and 4:30 PM. Would you like me to book one?
                     </div>
                   </motion.div>
-                  <div className="flex items-start gap-2.5 sm:gap-3">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 3.5 }}
+                    className="flex items-start gap-2.5 sm:gap-3"
+                  >
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-600 flex items-center justify-center text-[10px] sm:text-xs text-white flex-shrink-0">Usr</div>
                     <div className="bg-slate-700/50 rounded-2xl rounded-tl-none p-2.5 sm:p-3 text-slate-200 text-xs sm:text-sm max-w-[85%] sm:max-w-[80%]">
                       4:30 PM works great.
                     </div>
-                  </div>
+                  </motion.div>
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 3.5 }}
+                    transition={{ delay: 4.5 }}
                     className="flex items-center gap-2 py-1.5 sm:py-2"
                   >
                     <div className="h-px w-full bg-slate-700/50"></div>
@@ -157,7 +167,7 @@ const Hero = () => {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 4.5 }}
+                    transition={{ delay: 5.5 }}
                     className="flex items-start gap-2.5 sm:gap-3 flex-row-reverse"
                   >
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 flex items-center justify-center text-[10px] sm:text-xs text-white flex-shrink-0">AI</div>

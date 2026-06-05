@@ -88,8 +88,54 @@ const ChatWidget = () => {
                 }
                 return; // Exit here to handle async flow manually above
             } else {
-                // General chat after capture
-                aiText = "Thanks! Please use the 'Book Free Demo' button above for more details, or I can have someone call you.";
+                // General chat after capture (using Groq AI)
+                const GROQ_API_KEY = process.env.REACT_APP_GROQ_API_KEY;
+                if (GROQ_API_KEY) {
+                    try {
+                        const history = messages.map(msg => ({
+                            role: msg.sender === 'user' ? 'user' : 'assistant',
+                            content: msg.text
+                        }));
+
+                        const response = await axios.post("https://api.groq.com/openai/v1/chat/completions", {
+                            model: "llama-3.3-70b-versatile",
+                            messages: [
+                                {
+                                    role: "system",
+                                    content: `You are the AI Assistant for Powermind Automation (https://powermindai.tech). You are chatting with ${formData.name || 'a visitor'} (Email: ${formData.email || 'not provided'}). 
+                                    Powermind Automation installs a 24/7 AI Front Desk that automatically answers missed calls and customer inquiries on WhatsApp & Instagram to book appointments for clinics, real estate, showrooms, and gyms.
+                                    Keep your responses polite, extremely concise (1-2 sentences max), and focused on business value. Guide the user to use the 'Book Free Demo' form or strategy call options for custom needs.`
+                                },
+                                ...history,
+                                { role: 'user', content: input }
+                            ],
+                            temperature: 0.7,
+                            max_tokens: 150
+                        }, {
+                            headers: {
+                                "Authorization": `Bearer ${GROQ_API_KEY}`,
+                                "Content-Type": "application/json"
+                            }
+                        });
+
+                        aiText = response.data.choices[0].message.content;
+                    } catch (error) {
+                        console.error("Groq API error:", error);
+                        aiText = `Got it! I will share your note: "${input}" with our team. They will contact you at ${formData.email || 'your email'} shortly.`;
+                    }
+                } else {
+                    // Fallback if no GROQ_API_KEY is configured
+                    const query = input.toLowerCase();
+                    if (query.includes('human') || query.includes('employee') || query.includes('person') || query.includes('staff') || query.includes('agent') || query.includes('representative')) {
+                        aiText = `Understood, ${formData.name || 'there'}. I've marked your request to speak with a human team member. A representative will email you at ${formData.email || 'your email'} or call you shortly.`;
+                    } else if (query.includes('call') || query.includes('phone') || query.includes('number') || query.includes('mobile')) {
+                        aiText = `Absolutely! I've noted that you want a callback. We will reach out to you shortly. You can also make sure to leave your phone number in the main 'Book Your Demo' form above.`;
+                    } else if (query.includes('thank') || query.includes('thanks') || query.includes('ok') || query.includes('cool') || query.includes('great')) {
+                        aiText = "You're very welcome! Feel free to ask if you have any other questions. Have a wonderful day!";
+                    } else {
+                        aiText = `I have logged your message: "${input}". Our team will address this when they contact you at ${formData.email || 'your email'}. You can also use the 'Book Free Demo' form above to schedule a direct slot.`;
+                    }
+                }
             }
 
             setIsTyping(false);
