@@ -21,6 +21,7 @@ import axios from 'axios';
 // Prefer explicit env var but fallback to localhost dev default
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
+const N8N_URL = process.env.REACT_APP_N8N_URL || 'https://n8n-1-jr1m.onrender.com';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -49,7 +50,7 @@ const Contact = () => {
       const payload = { ...formData, service: 'AI Front Desk Demo', source: 'Website Contact Form' };
 
       // Update this URL to your n8n webhook
-      const WEBHOOK_URL = "https://n8n-1-jr1m.onrender.com/webhook/new-lead";
+      const WEBHOOK_URL = `${N8N_URL}/webhook/new-lead`;
 
       const response = await axios.post(WEBHOOK_URL, payload);
 
@@ -272,7 +273,7 @@ const Contact = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-5 w-5 text-gray-400" />
-                  <span className="text-gray-600">hello@powermindautomation.tech</span>
+                  <span className="text-gray-600"> powermindautomation@gmail.com</span>
                 </div>
               </div>
             </div>

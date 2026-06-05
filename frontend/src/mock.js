@@ -4,7 +4,7 @@ export const mockCompanyInfo = {
   name: "Powermind Automation",
   tagline: "Automate Your Business with AI-Powered Solutions",
   description: "Transform your operations, boost productivity by 300%, and scale effortlessly with our cutting-edge AI automation systems.",
-  email: "hello@powermindautomation.com",
+  email: " powermindautomation@gmail.com",
   phone: "+1 (555) 123-4567",
   address: "123 Innovation Drive, Tech Valley, CA 94105"
 };
@@ -19,7 +19,7 @@ export const mockServices = [
   },
   {
     id: 2,
-    title: "CRM & Pipeline Management", 
+    title: "CRM & Pipeline Management",
     description: "Streamline your sales process with automated pipeline management and customer relationship optimization.",
     features: ["Pipeline automation", "Deal progression", "Contact management", "Sales forecasting"],
     icon: "Database"
@@ -106,7 +106,7 @@ export const mockCaseStudies = [
   {
     id: 1,
     company: "TechStartup Inc.",
-    industry: "SaaS Technology", 
+    industry: "SaaS Technology",
     challenge: "Manual lead qualification consuming 40+ hours weekly",
     solution: "Implemented AI-powered lead scoring and automated nurturing sequences",
     timeframe: "3 months",
@@ -124,7 +124,7 @@ export const mockCaseStudies = [
     id: 2,
     company: "E-commerce Giant",
     industry: "Retail & E-commerce",
-    challenge: "Inefficient customer support and order management processes", 
+    challenge: "Inefficient customer support and order management processes",
     solution: "Automated customer service workflows and intelligent order routing",
     timeframe: "2 months",
     results: {
@@ -158,7 +158,7 @@ export const mockContactForm = {
       placeholder: "Enter your full name"
     },
     {
-      name: "email", 
+      name: "email",
       label: "Email Address",
       type: "email",
       required: true,
@@ -166,7 +166,7 @@ export const mockContactForm = {
     },
     {
       name: "company",
-      label: "Company Name", 
+      label: "Company Name",
       type: "text",
       required: true,
       placeholder: "Enter your company name"
@@ -174,7 +174,7 @@ export const mockContactForm = {
     {
       name: "phone",
       label: "Phone Number",
-      type: "tel", 
+      type: "tel",
       required: false,
       placeholder: "Enter your phone number"
     },
@@ -185,7 +185,7 @@ export const mockContactForm = {
       required: true,
       options: [
         "Lead Management Automation",
-        "CRM & Pipeline Management", 
+        "CRM & Pipeline Management",
         "Email & Outreach Automation",
         "Booking & Appointment Scheduling",
         "Workflow & Task Automation",

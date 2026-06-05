@@ -7,6 +7,8 @@ import { Card } from './ui/card';
 import axios from 'axios';
 import { toast } from 'sonner';
 
+const N8N_URL = process.env.REACT_APP_N8N_URL || 'https://n8n-1-jr1m.onrender.com';
+
 const ChatWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
@@ -58,7 +60,7 @@ const ChatWidget = () => {
 
                 // Submit to n8n
                 try {
-                    await axios.post("https://n8n-1-jr1m.onrender.com/webhook/new-lead", {
+                    await axios.post(`${N8N_URL}/webhook/new-lead`, {
                         fullName: formData.name,
                         email: email,
                         company: "Chat Widget Lead",

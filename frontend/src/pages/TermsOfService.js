@@ -46,7 +46,7 @@ const TermsOfService = () => {
         <p>These Terms are governed by the laws of India, without regard to conflict of law principles. Disputes will be handled in the competent courts located in Gujarat, India, unless agreed otherwise in writing.</p>
       </section>
 
-      <p className="text-sm text-gray-500">Questions? Contact us at <a href="mailto:hello@powermindautomation.tech" className="text-blue-600 underline">hello@powermindautomation.tech</a>.</p>
+      <p className="text-sm text-gray-500">Questions? Contact us at <a href="mailto: powermindautomation@gmail.com" className="text-blue-600 underline"> powermindautomation@gmail.com</a>.</p>
     </div>
   );
 };
